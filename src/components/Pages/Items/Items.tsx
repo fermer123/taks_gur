@@ -3,7 +3,7 @@ import {FC, useContext} from 'react';
 
 const Items: FC = () => {
   const {data} = useContext(CartContext);
-  console.log(data);
+
   return <div>asd</div>;
 };
 
