@@ -1,10 +1,11 @@
-import {FC, memo} from 'react';
+import {FC, memo, useMemo} from 'react';
 import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import {CardContent, Chip, Typography} from '@mui/material';
 import {CartItem} from '@src/components/types/types';
 import Slider from '@src/components/component/slider/Slider';
 import {SwiperSlide} from 'swiper/react';
+import formatDate from '@src/components/component/dateFormat/dateFormat';
 
 const CardItem = styled(Card)`
   display: flex;
@@ -21,6 +22,7 @@ const CardItemHeaderSeen = styled(Chip)`
   padding: 5px 8px;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 10;
 `;
 
 const CardItemInfo = styled(CardContent)`
@@ -61,6 +63,7 @@ const CardItemTitle = styled(Typography)`
 const CardItemFooter = styled(CardContent)`
   display: flex;
   justify-content: space-between;
+  gap: 15px;
   color: #8f8f8f;
   font-size: 12px;
   &:last-child {
@@ -76,9 +79,13 @@ const CardItemHeader = styled(Slider)`
 `;
 
 const Item: FC<CartItem> = ({seen, price, title, address, createdAt}) => {
+  const trueDate = useMemo(() => {
+    return formatDate(createdAt);
+  }, [createdAt]);
+
   return (
     <CardItem>
-      <CardItemHeader pagination slidesPerView={1}>
+      <CardItemHeader>
         {[1, 2, 3, 4].map((e) => (
           <SwiperSlide key={e}>
             <img
@@ -107,8 +114,8 @@ const Item: FC<CartItem> = ({seen, price, title, address, createdAt}) => {
         </CardItemInfoPrice>
         <CardItemTitle>{title}</CardItemTitle>
         <CardItemFooter>
-          <Typography>{address}</Typography>
-          <Typography>{createdAt}</Typography>
+          <Typography>{address.split(' ').slice(0, -1)}</Typography>
+          <Typography>{trueDate}</Typography>
         </CardItemFooter>
       </CardItemInfo>
     </CardItem>

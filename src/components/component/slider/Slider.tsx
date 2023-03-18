@@ -1,7 +1,9 @@
 import React, {FC} from 'react';
 import styled from 'styled-components';
-import {Navigation, Pagination} from 'swiper';
+import {Pagination} from 'swiper';
 import {Swiper, SwiperProps} from 'swiper/react';
+import 'swiper/swiper.min.css';
+import 'swiper/css/pagination';
 
 type SliderProps = {
   children: React.ReactNode | JSX.Element;
@@ -15,7 +17,7 @@ const SwiperSlider = styled(Swiper)`
 `;
 const Slider: FC<SliderProps> = ({children, ...rest}) => {
   return (
-    <SwiperSlider {...rest} modules={[Pagination, Navigation]}>
+    <SwiperSlider slidesPerView={1} modules={[Pagination]} pagination {...rest}>
       {children}
     </SwiperSlider>
   );
