@@ -13,7 +13,8 @@
     "downlevelIteration": true,
     "paths": {
       "@src/*": ["./src/*"],
-      "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"]
+      "@mui/styled-engine": ["./node_modules/@mui/styled-engine-sc"],
+      "swiper/*": ["./node_modules/swiper/*"]
     },
     "lib": ["esnext", "dom", "dom.iterable"],
     "sourceMap": true,
@@ -22,5 +23,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "exclude": ["node_modules", "build"],
-  "include": ["./src", "webpack.config.ts","./index.d.ts"]
+  "include": ["./src", "webpack.config.ts", "./index.d.ts"]
 }
