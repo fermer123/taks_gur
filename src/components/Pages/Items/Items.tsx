@@ -12,11 +12,11 @@ const CardItems = styled.div`
 `;
 
 const Items: FC = () => {
-  const {data} = useContext(CartContext);
+  const {data, addCart} = useContext(CartContext);
   return (
     <CardItems>
       {data?.map((e) => (
-        <Item {...e} key={e.id} />
+        <Item {...e} addCart={addCart} key={e.id} />
       ))}
     </CardItems>
   );

@@ -10,6 +10,7 @@ export type CartItem = {
 
 export type CartContextType = {
   data: CartItem[];
+  addCart: (e: CartItem) => void;
 };
 
 export interface FetchCartItem {
