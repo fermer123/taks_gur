@@ -8,7 +8,7 @@ import {
 } from 'react';
 import axios from '../axios';
 
-import {CartContextType, CartItem} from '../types/types';
+import {CartContextType, CartItem, FetchCartItem} from '../types/types';
 
 export const CartContext = createContext({} as CartContextType);
 
@@ -18,11 +18,12 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
   const dataItem = useCallback((cart: CartItem[]) => {
     setData(cart);
   }, []);
-  const fetchData = async (count = 10) => {
-    const resp = await axios<CartItem[]>(`?page=${count}`);
-    dataItem(resp.data);
+  const fetchData = async (page = 20) => {
+    const resp = await axios<FetchCartItem>(`?pages=${page}`);
+    dataItem(resp.data.items);
   };
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataItem]);

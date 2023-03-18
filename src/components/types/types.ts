@@ -11,3 +11,11 @@ export type CartItem = {
 export type CartContextType = {
   data: CartItem[];
 };
+
+export interface FetchCartItem {
+  items: CartItem[];
+  page: number;
+  pages: number;
+  size: number;
+  total: number;
+}

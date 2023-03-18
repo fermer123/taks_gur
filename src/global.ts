@@ -7,6 +7,7 @@ body{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  font-weight: 400;
  }
 *,
 ::after,
