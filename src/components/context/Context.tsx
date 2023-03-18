@@ -50,25 +50,35 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
     [cart],
   );
 
-  const dataItem = useCallback((card: CartItem[]) => {
-    setData(card);
-  }, []);
-  const fetchData = async (page = 20) => {
+  // const dataItem = useCallback((card: CartItem[]) => {
+  //   setData(card);
+  // }, []);
+  const fetchData = async (page = 10) => {
     const resp = await axios<FetchCartItem>(`?pages=${page}`);
-    dataItem(resp.data.items);
+    setData(resp.data.items);
   };
+
+  const showMore = useCallback(
+    async (page = 20) => {
+      const resp = await axios<FetchCartItem>(`?pages=${page}`);
+      setData([...data, ...resp.data.items]);
+    },
+    [data],
+  );
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fetchData();
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dataItem]);
+  }, []);
 
   const value = useMemo(
     () => ({
       data,
       addCart,
+      showMore,
     }),
-    [data, addCart],
+    [data, addCart, showMore],
   );
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

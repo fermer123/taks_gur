@@ -11,6 +11,7 @@ export type CartItem = {
 export type CartContextType = {
   data: CartItem[];
   addCart: (e: CartItem) => void;
+  showMore: (page: number) => void;
 };
 
 export interface FetchCartItem {

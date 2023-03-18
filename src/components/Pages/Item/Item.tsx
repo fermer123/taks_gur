@@ -6,6 +6,7 @@ import {CartItem} from '@src/components/types/types';
 import Slider from '@src/components/component/slider/Slider';
 import {SwiperSlide} from 'swiper/react';
 import formatDate from '@src/components/component/dateFormat/dateFormat';
+import {NavLink} from 'react-router-dom';
 
 const CardItem = styled(Card)`
   display: flex;
@@ -104,26 +105,27 @@ const Item: FC<ItemProps> = ({
 
   return (
     <CardItem>
-      <CardItemHeader>
-        {[1, 2, 3, 4].map((e) => (
-          <SwiperSlide key={e}>
-            <img
-              style={{
-                backgroundPosition: 'center',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                height: '260px',
-                width: '100%',
-              }}
-              alt={title}
-              // eslint-disable-next-line prefer-template
-              src='https://source.unsplash.com/random'
-            />
-          </SwiperSlide>
-        ))}
-        {seen && <CardItemHeaderSeen label='Просмотрено' />}
-      </CardItemHeader>
-
+      <NavLink to={`port/${id}`}>
+        <CardItemHeader>
+          {[1, 2, 3, 4].map((e) => (
+            <SwiperSlide key={e}>
+              <img
+                style={{
+                  backgroundPosition: 'center',
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  height: '260px',
+                  width: '100%',
+                }}
+                alt={title}
+                // eslint-disable-next-line prefer-template
+                src='https://source.unsplash.com/random'
+              />
+            </SwiperSlide>
+          ))}
+          {seen && <CardItemHeaderSeen label='Просмотрено' />}
+        </CardItemHeader>
+      </NavLink>
       <CardItemInfo>
         <CardItemInfoPrice fontWeight='700' fontSize='24px'>
           <>{price} ₽</>
