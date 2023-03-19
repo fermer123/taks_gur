@@ -1,3 +1,4 @@
+import ButtonShowMore from '@src/components/component/buttonShowMore/ButtonShowMore';
 import {CartContext} from '@src/components/context/Context';
 import {FC, useContext} from 'react';
 import styled from 'styled-components';
@@ -9,16 +10,20 @@ const CardItems = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
+  margin-bottom: 31px;
 `;
 
 const Items: FC = () => {
   const {data, addCart} = useContext(CartContext);
   return (
-    <CardItems>
-      {data?.map((e) => (
-        <Item {...e} addCart={addCart} key={e.id} />
-      ))}
-    </CardItems>
+    <>
+      <CardItems>
+        {data?.map((e) => (
+          <Item {...e} addCart={addCart} key={e.id} />
+        ))}
+      </CardItems>
+      <ButtonShowMore />
+    </>
   );
 };
 

@@ -50,17 +50,17 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
     [cart],
   );
 
-  // const dataItem = useCallback((card: CartItem[]) => {
-  //   setData(card);
-  // }, []);
-  const fetchData = async (page = 10) => {
-    const resp = await axios<FetchCartItem>(`?pages=${page}`);
-    setData(resp.data.items);
+  const fetchData = async (page = 1) => {
+    const [resp1, resp2] = await Promise.all([
+      axios<FetchCartItem>(`?page=${page}`),
+      axios<FetchCartItem>(`?page=${page + 1}`),
+    ]);
+    setData([...resp1.data.items, ...resp2.data.items]);
   };
 
   const showMore = useCallback(
-    async (page = 20) => {
-      const resp = await axios<FetchCartItem>(`?pages=${page}`);
+    async (page = 3) => {
+      const resp = await axios<FetchCartItem>(`?page=${page}`);
       setData([...data, ...resp.data.items]);
     },
     [data],
