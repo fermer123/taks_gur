@@ -15,6 +15,7 @@ export type CartContextType = {
   loading: boolean;
   error: boolean;
   errorShowMore: boolean;
+  loadingShowMore: boolean;
 };
 
 export interface FetchCartItem {
