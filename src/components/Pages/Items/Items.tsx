@@ -1,5 +1,6 @@
 import ButtonShowMore from '@src/components/component/buttonShowMore/ButtonShowMore';
 import ScrollButton from '@src/components/component/scrollButton/ScrollButton';
+import CardSkeleton from '@src/components/component/skeleton/Skeleton';
 import {CartContext} from '@src/components/context/Context';
 import {FC, useContext} from 'react';
 import styled from 'styled-components';
@@ -26,13 +27,16 @@ const CardItems = styled.div`
 `;
 
 const Items: FC = () => {
-  const {data, addCart} = useContext(CartContext);
+  const {data, addCart, loading} = useContext(CartContext);
   return (
     <>
       <CardItems>
-        {data?.map((e) => (
-          <Item {...e} addCart={addCart} key={e.id} />
-        ))}
+        {loading
+          ? Array(20)
+              .fill(0)
+              // eslint-disable-next-line react/no-array-index-key
+              .map((e, idx) => <CardSkeleton key={idx} />)
+          : data?.map((e) => <Item {...e} addCart={addCart} key={e.id} />)}
       </CardItems>
       <ScrollButton />
       <ButtonShowMore />

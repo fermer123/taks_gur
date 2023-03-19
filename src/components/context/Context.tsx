@@ -15,7 +15,8 @@ export const CartContext = createContext({} as CartContextType);
 export const CartProvider = ({children}: {children: React.ReactNode}) => {
   const [data, setData] = useState<CartItem[]>([]);
   const [cart, setCart] = useState<CartItem[]>([]);
-
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
   useEffect(() => {
     if (localStorage.getItem('cart') !== null) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
@@ -51,11 +52,19 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
   );
 
   const fetchData = async (page = 1) => {
-    const [resp1, resp2] = await Promise.all([
-      axios<FetchCartItem>(`?page=${page}`),
-      axios<FetchCartItem>(`?page=${page + 1}`),
-    ]);
-    setData([...resp1.data.items, ...resp2.data.items]);
+    try {
+      setLoading(true);
+      const [resp1, resp2] = await Promise.all([
+        axios<FetchCartItem>(`?page=${page}`),
+        axios<FetchCartItem>(`?page=${page + 1}`),
+      ]);
+      setLoading(false);
+      setData([...resp1.data.items, ...resp2.data.items]);
+    } catch (e) {
+      setLoading(false);
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+      setError(true);
+    }
   };
 
   const showMore = useCallback(
@@ -75,8 +84,10 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
       data,
       addCart,
       showMore,
+      loading,
+      error,
     }),
-    [data, addCart, showMore],
+    [data, addCart, showMore, loading, error],
   );
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

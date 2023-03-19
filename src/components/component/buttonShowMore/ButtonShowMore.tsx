@@ -1,5 +1,6 @@
 import {CartContext} from '@src/components/context/Context';
 import {FC, useCallback, useContext, useState} from 'react';
+import Skeleton from 'react-loading-skeleton';
 import styled from 'styled-components';
 
 const Button = styled.button<{visible: boolean}>`
@@ -15,8 +16,15 @@ const Button = styled.button<{visible: boolean}>`
   border-radius: 45px;
   display: ${(props) => (props.visible ? 'none' : 'block')};
 `;
+const ButtonSkeleton = styled.button`
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 45px;
+`;
 
 const ButtonShowMore: FC = () => {
+  const {loading} = useContext(CartContext);
   const {showMore} = useContext(CartContext);
   const [page, setPage] = useState(3);
 
@@ -26,9 +34,17 @@ const ButtonShowMore: FC = () => {
   }, [page, showMore]);
 
   return (
-    <Button visible={page >= 10} onClick={setPageNumber} type='button'>
-      Показать еще
-    </Button>
+    <>
+      {loading ? (
+        <ButtonSkeleton>
+          <Skeleton height={32} width={124} />
+        </ButtonSkeleton>
+      ) : (
+        <Button visible={page >= 10} onClick={setPageNumber} type='button'>
+          Показать еще
+        </Button>
+      )}
+    </>
   );
 };
 
