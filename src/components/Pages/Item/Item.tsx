@@ -12,6 +12,9 @@ const CardItem = styled(Card)`
   display: flex;
   flex-direction: column;
   max-width: 224px;
+  @media (max-width: 980px) {
+    max-width: 100%;
+  }
 `;
 
 const CardItemHeaderSeen = styled(Chip)`
