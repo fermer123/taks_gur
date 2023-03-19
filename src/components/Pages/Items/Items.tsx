@@ -1,4 +1,5 @@
 import ButtonShowMore from '@src/components/component/buttonShowMore/ButtonShowMore';
+import ScrollButton from '@src/components/component/scrollButton/ScrollButton';
 import {CartContext} from '@src/components/context/Context';
 import {FC, useContext} from 'react';
 import styled from 'styled-components';
@@ -33,6 +34,7 @@ const Items: FC = () => {
           <Item {...e} addCart={addCart} key={e.id} />
         ))}
       </CardItems>
+      <ScrollButton />
       <ButtonShowMore />
     </>
   );

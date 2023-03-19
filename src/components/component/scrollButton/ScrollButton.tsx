@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import Up from '@src/image/up.svg';
 
 const ScrollButtonBox = styled.button`
+  position: fixed;
+  top: 10%;
+  left: 5%;
   max-width: 106px;
   padding: 17px 19px 17px 47px;
   color: #8f8f8f;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
   border-radius: 30px;
   background: #ffffff url(${Up}) no-repeat 18px center;
+  z-index: 20;
 `;
 
 const ScrollButton: FC = () => {
@@ -39,7 +43,7 @@ const ScrollButton: FC = () => {
       style={isVisible ? {display: 'block'} : {display: 'none'}}
       onClick={scrollToTop}
       type='button'>
-      вверх
+      Вверх
     </ScrollButtonBox>
   );
 };
