@@ -1,8 +1,8 @@
 import {CartContext} from '@src/components/context/Context';
-import {FC, useContext} from 'react';
+import {FC, useCallback, useContext, useState} from 'react';
 import styled from 'styled-components';
 
-const Button = styled.button`
+const Button = styled.button<{visible: boolean}>`
   max-width: 124px;
   padding: 8px 15px;
   color: #00a0ab;
@@ -13,12 +13,20 @@ const Button = styled.button`
   left: 50%;
   transform: translateX(-50%);
   border-radius: 45px;
+  display: ${(props) => (props.visible ? 'none' : 'block')};
 `;
 
 const ButtonShowMore: FC = () => {
   const {showMore} = useContext(CartContext);
+  const [page, setPage] = useState(3);
+
+  const setPageNumber = useCallback(() => {
+    showMore(page);
+    setPage((prev) => prev + 1);
+  }, [page, showMore]);
+  console.log(page);
   return (
-    <Button onClick={() => showMore(20)} type='button'>
+    <Button visible={page >= 10} onClick={setPageNumber} type='button'>
       Показать еще
     </Button>
   );

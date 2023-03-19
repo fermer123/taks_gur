@@ -68,8 +68,6 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
   useEffect(() => {
     // eslint-disable-next-line @typescript-eslint/no-floating-promises
     fetchData();
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const value = useMemo(
