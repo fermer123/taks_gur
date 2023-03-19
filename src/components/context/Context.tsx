@@ -17,6 +17,8 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [loadingShowMore, setLoadingShowMore] = useState<boolean>(false);
+  const [errorShowMore, setErrorShowMore] = useState<boolean>(false);
   useEffect(() => {
     if (localStorage.getItem('cart') !== null) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
@@ -69,8 +71,13 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
 
   const showMore = useCallback(
     async (page = 3) => {
-      const resp = await axios<FetchCartItem>(`?page=${page}`);
-      setData([...data, ...resp.data.items]);
+      try {
+        setErrorShowMore(false);
+        const resp = await axios<FetchCartItem>(`?page=${page}`);
+        setData([...data, ...resp.data.items]);
+      } catch (e) {
+        setErrorShowMore(true);
+      }
     },
     [data],
   );
@@ -86,8 +93,9 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
       showMore,
       loading,
       error,
+      errorShowMore,
     }),
-    [data, addCart, showMore, loading, error],
+    [data, addCart, showMore, loading, error, errorShowMore],
   );
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

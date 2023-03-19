@@ -26,8 +26,16 @@ const CardItems = styled.div`
   }
 `;
 
+const ErrorOnLoad = styled.h1`
+  font-size: 14.4px;
+  line-height: 17px;
+  color: #8f8f8f;
+  text-align: center;
+  margin-bottom: 18px;
+`;
+
 const Items: FC = () => {
-  const {data, addCart, loading} = useContext(CartContext);
+  const {data, addCart, loading, errorShowMore} = useContext(CartContext);
   return (
     <>
       <CardItems>
@@ -39,7 +47,14 @@ const Items: FC = () => {
           : data?.map((e) => <Item {...e} addCart={addCart} key={e.id} />)}
       </CardItems>
       <ScrollButton />
-      <ButtonShowMore />
+      {errorShowMore ? (
+        <>
+          <ErrorOnLoad>Ошибка при загрузке</ErrorOnLoad>
+          <ButtonShowMore title='Повторить попытку' />
+        </>
+      ) : (
+        <ButtonShowMore title='Показать еще' />
+      )}
     </>
   );
 };

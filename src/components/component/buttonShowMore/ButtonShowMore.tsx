@@ -23,12 +23,17 @@ const ButtonSkeleton = styled.button`
   border-radius: 45px;
 `;
 
-const ButtonShowMore: FC = () => {
-  const {loading} = useContext(CartContext);
+interface ButtonShowMoreProps {
+  title: string;
+}
+
+const ButtonShowMore: FC<ButtonShowMoreProps> = ({title}: {title: string}) => {
+  const {loading, errorShowMore} = useContext(CartContext);
   const {showMore} = useContext(CartContext);
   const [page, setPage] = useState(3);
 
   const setPageNumber = useCallback(() => {
+    if (errorShowMore) return;
     showMore(page);
     setPage((prev) => prev + 1);
   }, [page, showMore]);
@@ -41,7 +46,7 @@ const ButtonShowMore: FC = () => {
         </ButtonSkeleton>
       ) : (
         <Button visible={page >= 10} onClick={setPageNumber} type='button'>
-          Показать еще
+          {title}
         </Button>
       )}
     </>
