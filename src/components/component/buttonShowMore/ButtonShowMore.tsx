@@ -24,7 +24,7 @@ const ButtonShowMore: FC = () => {
     showMore(page);
     setPage((prev) => prev + 1);
   }, [page, showMore]);
-  console.log(page);
+
   return (
     <Button visible={page >= 10} onClick={setPageNumber} type='button'>
       Показать еще

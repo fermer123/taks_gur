@@ -13,6 +13,7 @@ const CardItem = styled(Card)`
   display: flex;
   flex-direction: column;
   max-width: 224px;
+  margin: 0 auto;
 `;
 
 const CardItemHeaderSeen = styled(Chip)`
@@ -90,6 +91,8 @@ const ItemID: FC = () => {
   const [data, setData] = useState({} as CartItem);
   const {id} = useParams();
 
+  const {seen, price, title, address, createdAt} = data;
+
   const fetchDataItem = async (itemId: string) => {
     const resp = await axios<CartItem>(`/${itemId}`);
     setData(resp.data);
@@ -100,8 +103,8 @@ const ItemID: FC = () => {
     fetchDataItem(id);
   }, [id]);
   const trueDate = useMemo(() => {
-    return formatDate(data?.createdAt);
-  }, [data?.createdAt]);
+    return formatDate(createdAt ?? '');
+  }, [createdAt]);
   return (
     <CardItem>
       <CardItemHeader>
@@ -115,25 +118,25 @@ const ItemID: FC = () => {
                 height: '260px',
                 width: '100%',
               }}
-              alt={data?.title}
+              alt={title}
               // eslint-disable-next-line prefer-template
               src='https://source.unsplash.com/random'
             />
           </SwiperSlide>
         ))}
-        {data?.seen && <CardItemHeaderSeen label='Просмотрено' />}
+        {seen && <CardItemHeaderSeen label='Просмотрено' />}
       </CardItemHeader>
 
       <CardItemInfo>
         <CardItemInfoPrice fontWeight='700' fontSize='24px'>
-          <>{data?.price} ₽</>
+          <>{price} ₽</>
           <StyledIcon>
             <path d='M19.4321 9.21218C18.5975 11.5152 12.8243 16.697 10.0421 19C7.60767 16.8889 2.42577 12.206 1.17376 10.3636C-0.391238 8.06056 -0.391267 4.60649 1.17375 2.3033C2.30214 0.642681 4.3037 0.000281163 5.86877 0C7.64008 -0.000318142 10.0421 2.30302 10.0421 2.30302C10.0421 2.30302 13.6938 -1.15134 17.3455 1.15179C20.2456 2.98093 20.4755 6.33341 19.4321 9.21218Z' />
           </StyledIcon>
         </CardItemInfoPrice>
-        <CardItemTitle>{data?.title}</CardItemTitle>
+        <CardItemTitle>{title}</CardItemTitle>
         <CardItemFooter>
-          {/* <Typography>{data?.address.split(' ').slice(0, -1)}</Typography> */}
+          <Typography>{address?.split(' ').slice(0, -1)}</Typography>
           <Typography>{trueDate}</Typography>
         </CardItemFooter>
       </CardItemInfo>
