@@ -15,6 +15,7 @@ const config: Configuration = {
   output: {
     path: path.join(__dirname, 'build'),
     filename: '[name].js',
+    assetModuleFilename: 'assets/[name][ext]',
     clean: true,
   },
   resolve: {
