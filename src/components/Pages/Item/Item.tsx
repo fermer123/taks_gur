@@ -34,6 +34,7 @@ const CardItemInfo = styled(CardContent)`
 `;
 
 const CardItemInfoPrice = styled(Typography)`
+  font-family: 'Ubuntu';
   font-weight: 700;
   font-size: 24px;
   line-height: 25px;
@@ -59,6 +60,7 @@ const StyledIcon = styled.svg`
 `;
 
 const CardItemTitle = styled(Typography)`
+  font-family: 'Ubuntu';
   color: #2c2c2c;
   font-weight: 500;
   margin-bottom: 10px;
@@ -69,10 +71,20 @@ const CardItemFooter = styled(CardContent)`
   justify-content: space-between;
   gap: 15px;
   color: #8f8f8f;
-  font-size: 12px;
+
   &:last-child {
     padding: 0;
   }
+`;
+
+const CardItemAddress = styled(Typography)`
+  font-family: 'Ubuntu';
+  font-size: 12px;
+`;
+
+const CardItemsDate = styled(Typography)`
+  font-family: 'Ubuntu';
+  font-size: 12px;
 `;
 
 const CardItemHeader = styled(Slider)`
@@ -149,8 +161,8 @@ const Item: FC<ItemProps> = ({
         </CardItemInfoPrice>
         <CardItemTitle>{title}</CardItemTitle>
         <CardItemFooter>
-          <Typography>{address.split(' ').slice(0, -1)}</Typography>
-          <Typography>{trueDate}</Typography>
+          <CardItemAddress>{address.split(' ').slice(0, -1)}</CardItemAddress>
+          <CardItemsDate>{trueDate}</CardItemsDate>
         </CardItemFooter>
       </CardItemInfo>
     </CardItem>
