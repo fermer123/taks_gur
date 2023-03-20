@@ -3,14 +3,13 @@ import {FC} from 'react';
 import styled from 'styled-components';
 
 const HeaderContainer = styled(Box)`
-  max-width: 1280px;
+  width: 100%;
   display: flex;
   justify-content: flex-end;
-  margin-right: 35px;
 `;
 
 const ButtonGroup = styled(Box)`
-  padding: 35px 0 26px 0;
+  padding: 35px 35px 26px 0;
   display: flex;
   gap: 16px;
 `;

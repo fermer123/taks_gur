@@ -72,7 +72,6 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
       try {
         setLoadingShowMore(true);
         setErrorShowMore(false);
-        console.log('clicl');
         const resp = await axios<FetchCartItem>(`?page=${page}`);
         setData([...data, ...resp.data.items]);
         setLoadingShowMore(false);
