@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Up from '@src/image/up.svg';
 
 const ScrollButtonBox = styled.button`
+  font-family: 'Ubuntu';
   position: fixed;
   top: 10%;
   left: 5%;

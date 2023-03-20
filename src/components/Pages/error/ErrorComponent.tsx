@@ -14,6 +14,7 @@ const ErrorContainer = styled(Box)`
 
 const ErrorContainerTitle = styled.h1`
   text-transform: uppercase;
+  font-family: 'Ubuntu';
   color: #00a0ab;
   font-weight: 500;
   font-size: 16.8px;
@@ -23,6 +24,7 @@ const ErrorContainerTitle = styled.h1`
 `;
 
 const ErrorContainerInfo = styled.p`
+  font-family: 'Ubuntu';
   color: #8f8f8f;
   font-size: 14.4px;
   line-height: 17px;

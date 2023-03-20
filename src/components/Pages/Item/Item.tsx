@@ -18,6 +18,8 @@ const CardItem = styled(Card)`
 `;
 
 const CardItemHeaderSeen = styled(Chip)`
+  font-family: 'Ubuntu';
+  font-size: 12px;
   position: absolute;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 8px;

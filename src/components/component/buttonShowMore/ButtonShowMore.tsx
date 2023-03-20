@@ -4,6 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import styled from 'styled-components';
 
 const Button = styled.button<{visible: boolean}>`
+  font-family: 'Ubuntu';
   padding: 8px 15px;
   color: #00a0ab;
   background-color: #ffffff;
