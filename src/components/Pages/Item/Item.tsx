@@ -136,8 +136,7 @@ const Item: FC<ItemProps> = ({
                   width: '100%',
                 }}
                 alt={title}
-                // eslint-disable-next-line prefer-template
-                src={e}
+                src={require(`../../../image/${e}`)}
               />
             </SwiperSlide>
           ))}

@@ -1,6 +1,1 @@
-export const IMAGES = [
-  'assets/slide1.jpg',
-  'assets/slide2.jpg',
-  'assets/slide3.jpg',
-  'assets/slide4.jpg',
-];
+export const IMAGES = ['slide1.jpg', 'slide2.jpg', 'slide3.jpg', 'slide4.jpg'];
