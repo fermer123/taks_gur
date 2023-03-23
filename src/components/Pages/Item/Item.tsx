@@ -7,6 +7,7 @@ import Slider from '@src/components/component/slider/Slider';
 import {SwiperSlide} from 'swiper/react';
 import formatDate from '@src/components/component/dateFormat/dateFormat';
 import {NavLink} from 'react-router-dom';
+import {IMAGES} from '@src/components/axios/Api';
 
 const CardItem = styled(Card)`
   display: flex;
@@ -124,7 +125,7 @@ const Item: FC<ItemProps> = ({
     <CardItem>
       <NavLink to={`port/${id}`}>
         <CardItemHeader>
-          {[1, 2, 3, 4].map((e) => (
+          {IMAGES.map((e) => (
             <SwiperSlide key={e}>
               <img
                 style={{
@@ -136,7 +137,7 @@ const Item: FC<ItemProps> = ({
                 }}
                 alt={title}
                 // eslint-disable-next-line prefer-template
-                src='https://source.unsplash.com/random'
+                src={e}
               />
             </SwiperSlide>
           ))}

@@ -8,6 +8,7 @@ import {SwiperSlide} from 'swiper/react';
 import formatDate from '@src/components/component/dateFormat/dateFormat';
 import {useParams} from 'react-router-dom';
 import axios from '@src/components/axios';
+import {IMAGES} from '@src/components/axios/Api';
 
 const CardItem = styled(Card)`
   display: flex;
@@ -108,7 +109,7 @@ const ItemID: FC = () => {
   return (
     <CardItem>
       <CardItemHeader>
-        {[1, 2, 3, 4].map((e) => (
+        {IMAGES.map((e) => (
           <SwiperSlide key={e}>
             <img
               style={{
@@ -120,7 +121,7 @@ const ItemID: FC = () => {
               }}
               alt={title}
               // eslint-disable-next-line prefer-template
-              src='https://source.unsplash.com/random'
+              src={e}
             />
           </SwiperSlide>
         ))}

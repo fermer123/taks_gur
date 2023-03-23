@@ -2,8 +2,10 @@ import {createGlobalStyle} from 'styled-components';
 import UbuntuReg from './fonts/Ubuntu-Regular.ttf';
 import UbuntuMed from './fonts/Ubuntu-Medium.ttf';
 import UbuntuMBold from './fonts/Ubuntu-Bold.ttf';
+import 'normalize.css';
 
 const GlobalStyle = createGlobalStyle`
+
 @font-face {
   font-family: 'Ubuntu';
   font-style: normal;

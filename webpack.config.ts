@@ -52,6 +52,9 @@ const config: Configuration = {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
+        generator: {
+          filename: 'assets/image/[name][ext]',
+        },
       },
       {
         test: /\.css$/i,
@@ -64,7 +67,7 @@ const config: Configuration = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              outputPath: 'fonts/',
+              outputPath: 'assets/fonts/',
             },
           },
         ],
