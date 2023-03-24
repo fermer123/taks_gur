@@ -1,6 +1,8 @@
 import {Box} from '@mui/system';
 import {FC} from 'react';
 import styled from 'styled-components';
+import GroupA from '@src/image/group1.svg';
+import GroupB from '@src/image/group2.svg';
 
 const HeaderContainer = styled(Box)`
   width: 100%;
@@ -14,15 +16,24 @@ const ButtonGroup = styled(Box)`
   gap: 16px;
 `;
 
-const StyledIcon = styled.svg`
-  width: 31px;
-  height: 31px;
+const StyledIconA = styled(GroupA)`
+  stroke: #c7c7c7;
   &:hover {
-    fill: #a4a4a4;
+    stroke: #a4a4a4;
     cursor: pointer;
   }
   &:active {
-    fill: #00a0ab;
+    stroke: #00a0ab;
+  }
+`;
+const StyledIconB = styled(GroupB)`
+  stroke: #c7c7c7;
+  &:hover {
+    stroke: #a4a4a4;
+    cursor: pointer;
+  }
+  &:active {
+    stroke: #00a0ab;
   }
 `;
 
@@ -30,78 +41,8 @@ const Header: FC = () => {
   return (
     <HeaderContainer>
       <ButtonGroup>
-        <button type='button'>
-          <StyledIcon
-            width='31'
-            height='31'
-            viewBox='0 0 31 31'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'>
-            <rect
-              x='1.1'
-              y='1.1'
-              width='11.8'
-              height='11.8'
-              rx='1.9'
-              stroke='#C7C7C7'
-              strokeWidth='2.2'
-            />
-            <rect
-              x='18.1'
-              y='1.1'
-              width='11.8'
-              height='11.8'
-              rx='1.9'
-              stroke='#C7C7C7'
-              strokeWidth='2.2'
-            />
-            <rect
-              x='1.1'
-              y='18.1'
-              width='11.8'
-              height='11.8'
-              rx='1.9'
-              stroke='#C7C7C7'
-              strokeWidth='2.2'
-            />
-            <rect
-              x='18.1'
-              y='18.1'
-              width='11.8'
-              height='11.8'
-              rx='1.9'
-              stroke='#C7C7C7'
-              strokeWidth='2.2'
-            />
-          </StyledIcon>
-        </button>
-        <button type='button'>
-          <StyledIcon
-            width='31'
-            height='31'
-            viewBox='0 0 31 31'
-            fill='none'
-            xmlns='http://www.w3.org/2000/svg'>
-            <rect
-              x='1.1'
-              y='18.1'
-              width='28.8'
-              height='11.8'
-              rx='1.9'
-              stroke='#C7C7C7'
-              strokeWidth='2.2'
-            />
-            <rect
-              x='1.1'
-              y='1.1'
-              width='28.8'
-              height='11.8'
-              rx='1.9'
-              stroke='#C7C7C7'
-              strokeWidth='2.2'
-            />
-          </StyledIcon>
-        </button>
+        <StyledIconA />
+        <StyledIconB />
       </ButtonGroup>
     </HeaderContainer>
   );

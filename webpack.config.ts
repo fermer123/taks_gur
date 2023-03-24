@@ -50,11 +50,23 @@ const config: Configuration = {
         exclude: /build/,
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
         generator: {
           filename: 'assets/image/[name][ext]',
         },
+      },
+      {
+        test: /\.svg/i,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              typescript: true,
+              ext: 'tsx',
+            },
+          },
+        ],
       },
       {
         test: /\.css$/i,
