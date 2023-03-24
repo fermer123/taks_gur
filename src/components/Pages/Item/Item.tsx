@@ -1,4 +1,4 @@
-import {FC, memo, useMemo} from 'react';
+import {FC, useMemo} from 'react';
 import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import {CardContent, Chip, Typography} from '@mui/material';
@@ -171,4 +171,4 @@ const Item: FC<ItemProps> = ({
   );
 };
 
-export default memo(Item);
+export default Item;
