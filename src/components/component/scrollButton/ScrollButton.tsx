@@ -1,6 +1,6 @@
 import {FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
-import Up from '@src/image/up.svg';
+import up from '@src/image/up.svg?url';
 
 const ScrollButtonBox = styled.button`
   font-family: 'Ubuntu';
@@ -12,7 +12,7 @@ const ScrollButtonBox = styled.button`
   color: #8f8f8f;
   box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.08);
   border-radius: 30px;
-  background: #ffffff url(${Up}) no-repeat 18px center;
+  background: #ffffff url(${up}) no-repeat 18px center;
   z-index: 20;
 `;
 

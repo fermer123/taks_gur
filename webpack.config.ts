@@ -57,10 +57,20 @@ const config: Configuration = {
         },
       },
       {
+        test: /\.svg$/i,
+        type: 'asset/resource',
+        resourceQuery: /url/,
+        generator: {
+          filename: 'assets/image/[name][ext]',
+        },
+      },
+      {
         test: /\.svg/i,
+        resourceQuery: {not: [/url/]}, // exclude react component if *.svg?url
         use: [
           {
             loader: '@svgr/webpack',
+
             options: {
               typescript: true,
               ext: 'tsx',
