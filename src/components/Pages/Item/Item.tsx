@@ -2,7 +2,7 @@ import {FC, useMemo} from 'react';
 import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import {CardContent, Chip, Typography} from '@mui/material';
-import {CartItem} from '@src/components/types/types';
+import {AltView, CartItem} from '@src/components/types/types';
 import Slider from '@src/components/component/slider/Slider';
 import {SwiperSlide} from 'swiper/react';
 import formatDate from '@src/components/component/dateFormat/dateFormat';
@@ -10,10 +10,10 @@ import {NavLink} from 'react-router-dom';
 import {IMAGES} from '@src/components/axios/Api';
 import Like from '@src/image/like.svg';
 
-const CardItem = styled(Card)`
+const CardItem = styled(Card)<AltView>`
   display: flex;
-  flex-direction: column;
-  max-width: 224px;
+  flex-direction: ${({vertical}) => (vertical ? 'row' : 'column')};
+  max-width: ${({vertical}) => (vertical ? '472px' : '224px')};
   @media (max-width: 980px) {
     max-width: 100%;
   }
@@ -91,11 +91,12 @@ const CardItemsDate = styled(Typography)`
   font-size: 12px;
 `;
 
-const CardItemHeader = styled(Slider)`
+const CardItemHeader = styled(Slider)<AltView>`
   position: relative;
+  max-width: ${({vertical}) => (vertical ? '134px' : '224px')};
   width: 100%;
-  min-height: 260px;
-  margin-bottom: 10px;
+  min-height: ${({vertical}) => (vertical ? '260px' : '134px')};
+  margin-bottom: ${({vertical}) => (vertical ? 'none' : '10px')};
   &.swiper-pagination-bullet {
     background: #c7c7c7;
   }
@@ -106,6 +107,7 @@ const CardItemHeader = styled(Slider)`
 
 interface ItemProps extends CartItem {
   addCart: (item: CartItem) => void;
+  vertical: boolean;
 }
 
 const Item: FC<ItemProps> = ({
@@ -117,15 +119,16 @@ const Item: FC<ItemProps> = ({
   about,
   id,
   addCart,
+  vertical,
 }) => {
   const trueDate = useMemo(() => {
     return formatDate(createdAt);
   }, [createdAt]);
 
   return (
-    <CardItem>
+    <CardItem vertical={vertical}>
       <NavLink to={`port/${id}`}>
-        <CardItemHeader>
+        <CardItemHeader vertical={vertical}>
           {IMAGES.map((e) => (
             <SwiperSlide key={e}>
               <img
@@ -133,7 +136,7 @@ const Item: FC<ItemProps> = ({
                   backgroundPosition: 'center',
                   backgroundSize: 'cover',
                   backgroundRepeat: 'no-repeat',
-                  height: '260px',
+                  height: '100%',
                   width: '100%',
                 }}
                 alt={title}

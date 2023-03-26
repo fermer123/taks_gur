@@ -1,8 +1,9 @@
 import {Box} from '@mui/system';
-import {FC} from 'react';
+import {FC, useContext} from 'react';
 import styled from 'styled-components';
 import GroupA from '@src/image/group1.svg';
 import GroupB from '@src/image/group2.svg';
+import {CartContext} from '@src/components/context/Context';
 
 const HeaderContainer = styled(Box)`
   width: 100%;
@@ -38,11 +39,13 @@ const StyledIconB = styled(GroupB)`
 `;
 
 const Header: FC = () => {
+  const {alternativeView} = useContext(CartContext);
+
   return (
     <HeaderContainer>
       <ButtonGroup>
-        <StyledIconA />
-        <StyledIconB />
+        <StyledIconA onClick={() => alternativeView(false)} />
+        <StyledIconB onClick={() => alternativeView(true)} />
       </ButtonGroup>
     </HeaderContainer>
   );

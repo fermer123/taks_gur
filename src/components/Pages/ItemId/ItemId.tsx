@@ -1,4 +1,4 @@
-import {FC, useEffect, useMemo, useState} from 'react';
+import {FC, useContext, useEffect, useMemo, useState} from 'react';
 import Card from '@mui/material/Card';
 import styled from 'styled-components';
 import {CardContent, Chip, Typography} from '@mui/material';
@@ -10,11 +10,12 @@ import {useParams} from 'react-router-dom';
 import axios from '@src/components/axios';
 import {IMAGES} from '@src/components/axios/Api';
 import Like from '@src/image/like.svg';
+import {CartContext} from '@src/components/context/Context';
 
-const CardItem = styled(Card)`
+const CardItem = styled(Card)<{vertical: boolean | string}>`
   display: flex;
-  flex-direction: column;
-  max-width: 224px;
+  flex-direction: ${(vertical) => (vertical ? 'row' : 'column')};
+  max-width: ${({vertical}) => (vertical ? '472px' : '224px')};
   margin: 0 auto;
 `;
 
@@ -92,7 +93,7 @@ const CardItemHeader = styled(Slider)`
 const ItemID: FC = () => {
   const [data, setData] = useState({} as CartItem);
   const {id} = useParams();
-
+  const {vertical} = useContext(CartContext);
   const {seen, price, title, address, createdAt} = data;
 
   const fetchDataItem = async (itemId: string) => {
@@ -108,7 +109,7 @@ const ItemID: FC = () => {
     return formatDate(createdAt ?? '');
   }, [createdAt]);
   return (
-    <CardItem>
+    <CardItem vertical={vertical.toString()}>
       <CardItemHeader>
         {IMAGES.map((e) => (
           <SwiperSlide key={e}>

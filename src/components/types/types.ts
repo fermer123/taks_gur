@@ -8,6 +8,14 @@ export type CartItem = {
   createdAt: string;
 };
 
+export interface FetchCartItem {
+  items: CartItem[];
+  page: number;
+  pages: number;
+  size: number;
+  total: number;
+}
+
 export type CartContextType = {
   data: CartItem[];
   addCart: (e: CartItem) => void;
@@ -16,12 +24,10 @@ export type CartContextType = {
   error: boolean;
   errorShowMore: boolean;
   loadingShowMore: boolean;
+  alternativeView: (view: boolean) => void;
+  vertical: boolean;
 };
 
-export interface FetchCartItem {
-  items: CartItem[];
-  page: number;
-  pages: number;
-  size: number;
-  total: number;
+export interface AltView {
+  vertical: boolean | string;
 }

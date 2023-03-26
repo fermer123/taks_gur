@@ -19,6 +19,7 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
   const [error, setError] = useState<boolean>(false);
   const [loadingShowMore, setLoadingShowMore] = useState<boolean>(false);
   const [errorShowMore, setErrorShowMore] = useState<boolean>(false);
+  const [vertical, setVertical] = useState<boolean>(false);
   useEffect(() => {
     if (localStorage.getItem('cart') !== null) {
       setCart(JSON.parse(localStorage.getItem('cart')));
@@ -28,6 +29,13 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
+
+  const alternativeView = useCallback(
+    (view: boolean) => {
+      setVertical(view);
+    },
+    [vertical],
+  );
 
   const addCart = useCallback(
     (item: CartItem) => {
@@ -96,12 +104,24 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
       error,
       errorShowMore,
       loadingShowMore,
+      alternativeView,
+      vertical,
     }),
-    [data, addCart, showMore, loading, error, errorShowMore, loadingShowMore],
+    [
+      data,
+      addCart,
+      showMore,
+      loading,
+      error,
+      errorShowMore,
+      loadingShowMore,
+      alternativeView,
+      vertical,
+    ],
   );
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 
-export const useCartContext = () => {
-  return useContext(CartContext);
-};
+// export const useCartContext = () => {
+//   return useContext(CartContext);
+// };

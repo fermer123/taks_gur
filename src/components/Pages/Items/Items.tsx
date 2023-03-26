@@ -2,20 +2,23 @@ import ButtonShowMore from '@src/components/component/buttonShowMore/ButtonShowM
 import ScrollButton from '@src/components/component/scrollButton/ScrollButton';
 import CardSkeleton from '@src/components/component/skeleton/Skeleton';
 import {CartContext} from '@src/components/context/Context';
+import {AltView} from '@src/components/types/types';
 import {FC, useContext} from 'react';
 import styled from 'styled-components';
 import Item from '../Item/Item';
 
-const CardItems = styled.div`
+const CardItems = styled.div<AltView>`
   margin: 0 auto;
   max-width: 960px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: ${({vertical}) =>
+    vertical ? 'repeat(2, 1fr)' : 'repeat(4, 1fr)'};
   gap: 24px;
   margin-bottom: 31px;
   @media (max-width: 980px) {
     padding: 0 15px;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: ${({vertical}) =>
+      vertical ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)'};
   }
   @media (max-width: 720px) {
     grid-template-columns: repeat(2, 1fr);
@@ -35,16 +38,19 @@ const ErrorOnLoad = styled.h1`
 `;
 
 const Items: FC = () => {
-  const {data, addCart, loading, errorShowMore} = useContext(CartContext);
+  const {data, addCart, loading, errorShowMore, vertical} =
+    useContext(CartContext);
   return (
     <>
-      <CardItems>
+      <CardItems vertical={vertical}>
         {loading
           ? Array(20)
               .fill(0)
               // eslint-disable-next-line react/no-array-index-key
               .map((e, idx) => <CardSkeleton key={idx} />)
-          : data?.map((e) => <Item {...e} addCart={addCart} key={e.id} />)}
+          : data?.map((e) => (
+              <Item {...e} vertical={vertical} addCart={addCart} key={e.id} />
+            ))}
       </CardItems>
       <ScrollButton />
       {errorShowMore ? (
