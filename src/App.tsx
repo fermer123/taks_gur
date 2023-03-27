@@ -17,6 +17,7 @@ const App: FC = () => {
   const {error} = useContext(CartContext);
 
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {error ? (
         <ErrorComponent />

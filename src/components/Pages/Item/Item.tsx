@@ -7,7 +7,7 @@ import Slider from '@src/components/component/slider/Slider';
 import {SwiperSlide} from 'swiper/react';
 import formatDate from '@src/components/component/dateFormat/dateFormat';
 import {NavLink} from 'react-router-dom';
-import {IMAGES} from '@src/components/axios/Api';
+import IMAGES from '@src/components/axios/Api';
 import Like from '@src/image/like.svg';
 
 const CardItem = styled(Card)<AltView>`

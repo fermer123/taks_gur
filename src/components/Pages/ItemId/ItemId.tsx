@@ -8,7 +8,7 @@ import {SwiperSlide} from 'swiper/react';
 import formatDate from '@src/components/component/dateFormat/dateFormat';
 import {useParams} from 'react-router-dom';
 import axios from '@src/components/axios';
-import {IMAGES} from '@src/components/axios/Api';
+import IMAGES from '@src/components/axios/Api';
 import Like from '@src/image/like.svg';
 import {CartContext} from '@src/components/context/Context';
 
@@ -122,7 +122,7 @@ const ItemID: FC = () => {
                 width: '100%',
               }}
               alt={title}
-              // eslint-disable-next-line prefer-template
+              // eslint-disable-next-line import/no-dynamic-require, global-require
               src={require(`../../../image/${e}`)}
             />
           </SwiperSlide>

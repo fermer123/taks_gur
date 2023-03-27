@@ -28,7 +28,7 @@ interface ButtonShowMoreProps {
 }
 
 const ButtonShowMore: FC<ButtonShowMoreProps> = ({title}) => {
-  const {loading, errorShowMore} = useContext(CartContext);
+  const {loading} = useContext(CartContext);
   const {showMore} = useContext(CartContext);
   const [page, setPage] = useState(3);
 
@@ -38,6 +38,7 @@ const ButtonShowMore: FC<ButtonShowMoreProps> = ({title}) => {
   }, [page, showMore]);
 
   return (
+    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {loading ? (
         <ButtonSkeleton>
