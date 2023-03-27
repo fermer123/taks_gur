@@ -35,6 +35,7 @@ const CardItemHeaderSeen = styled(Chip)`
 
 const CardItemInfo = styled(CardContent)`
   padding: 10px 12px 19px;
+  width: 100%;
 `;
 
 const CardItemInfoPrice = styled(Typography)`
@@ -70,12 +71,12 @@ const CardItemTitle = styled(Typography)`
   margin-bottom: 10px;
 `;
 
-const CardItemFooter = styled(CardContent)`
+const CardItemFooter = styled(CardContent)<AltView>`
   display: flex;
   justify-content: space-between;
+  margin-top: ${({vertical}) => (vertical ? '30px' : '')};
   gap: 15px;
   color: #8f8f8f;
-
   &:last-child {
     padding: 0;
   }
@@ -93,9 +94,9 @@ const CardItemsDate = styled(Typography)`
 
 const CardItemHeader = styled(Slider)<AltView>`
   position: relative;
-  max-width: ${({vertical}) => (vertical ? '134px' : '224px')};
+  max-width: ${({vertical}) => (vertical ? '156px' : '224px')};
   width: 100%;
-  min-height: ${({vertical}) => (vertical ? '260px' : '134px')};
+  height: ${({vertical}) => (vertical ? '134px' : '260px')};
   margin-bottom: ${({vertical}) => (vertical ? 'none' : '10px')};
   &.swiper-pagination-bullet {
     background: #c7c7c7;
@@ -165,7 +166,7 @@ const Item: FC<ItemProps> = ({
           />
         </CardItemInfoPrice>
         <CardItemTitle>{title}</CardItemTitle>
-        <CardItemFooter>
+        <CardItemFooter vertical={vertical}>
           <CardItemAddress>{address.split(' ').slice(0, -1)}</CardItemAddress>
           <CardItemsDate>{trueDate}</CardItemsDate>
         </CardItemFooter>
