@@ -48,6 +48,9 @@ const CardItemInfoPrice = styled(Typography)`
   align-items: center;
   margin-bottom: 10px;
   color: #2c2c2c;
+  @media (max-width: 420px) {
+    font-size: 12px;
+  }
 `;
 
 const StyledIcon = styled(Like)`
@@ -69,6 +72,9 @@ const CardItemTitle = styled(Typography)`
   color: #2c2c2c;
   font-weight: 500;
   margin-bottom: 10px;
+  @media (max-width: 420px) {
+    font-size: 12px;
+  }
 `;
 
 const CardItemFooter = styled(CardContent)<AltView>`
@@ -79,6 +85,9 @@ const CardItemFooter = styled(CardContent)<AltView>`
   color: #8f8f8f;
   &:last-child {
     padding: 0;
+  }
+  @media (max-width: 420px) {
+    flex-wrap: wrap;
   }
 `;
 

@@ -21,7 +21,8 @@ const CardItems = styled.div<AltView>`
       vertical ? 'repeat(2, 1fr)' : 'repeat(3, 1fr)'};
   }
   @media (max-width: 720px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: ${({vertical}) =>
+      vertical ? 'repeat(1, 1fr)' : 'repeat(2, 1fr)'};
     gap: 15px;
   }
   @media (max-width: 500px) {
