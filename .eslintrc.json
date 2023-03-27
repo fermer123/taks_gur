@@ -25,7 +25,8 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "allowExpressions": true,
+    "@typescript-eslint/no-unsafe-assignment": 0,
+    "allowExpressions": 0,
     "@typescript-eslint/no-unsafe-call": "off",
     "react/destructuring-assignment": "off",
     "react/jsx-props-no-spreading": "off",

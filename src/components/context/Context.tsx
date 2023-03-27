@@ -1,11 +1,4 @@
-import {
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import {createContext, useCallback, useEffect, useMemo, useState} from 'react';
 import axios from '../axios';
 
 import {CartContextType, CartItem, FetchCartItem} from '../types/types';
@@ -22,6 +15,7 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
   const [vertical, setVertical] = useState<boolean>(false);
   useEffect(() => {
     if (localStorage.getItem('cart') !== null) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       setCart(JSON.parse(localStorage.getItem('cart')));
     }
   }, []);
@@ -30,12 +24,9 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  const alternativeView = useCallback(
-    (view: boolean) => {
-      setVertical(view);
-    },
-    [vertical],
-  );
+  const alternativeView = useCallback((view: boolean) => {
+    setVertical(view);
+  }, []);
 
   const addCart = useCallback(
     (item: CartItem) => {
@@ -43,14 +34,8 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
 
       if (sameItem >= 0) {
         setCart(
-          cart.map((e) => {
-            if (e.id === item.id) {
-              return {
-                ...e,
-                item,
-              };
-            }
-            return e;
+          cart.filter((cartItem) => {
+            return cartItem.id !== item.id;
           }),
         );
       } else {
@@ -106,6 +91,7 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
       loadingShowMore,
       alternativeView,
       vertical,
+      cart,
     }),
     [
       data,
@@ -117,6 +103,7 @@ export const CartProvider = ({children}: {children: React.ReactNode}) => {
       loadingShowMore,
       alternativeView,
       vertical,
+      cart,
     ],
   );
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

@@ -56,7 +56,7 @@ const CardItemInfoPrice = styled(Typography)`
 const StyledIcon = styled(Like)`
   width: 20px;
   height: 19px;
-  fill: #c7c7c7;
+  fill: ${({isInArray}) => (isInArray ? '#00a0ab' : '#c7c7c7')};
   &:hover {
     fill: #a4a4a4;
     transform: scale(1.1);
@@ -118,6 +118,7 @@ const CardItemHeader = styled(Slider)<AltView>`
 interface ItemProps extends CartItem {
   addCart: (item: CartItem) => void;
   vertical: boolean;
+  isInArray: boolean;
 }
 
 const Item: FC<ItemProps> = ({
@@ -130,6 +131,7 @@ const Item: FC<ItemProps> = ({
   id,
   addCart,
   vertical,
+  isInArray,
 }) => {
   const trueDate = useMemo(() => {
     return formatDate(createdAt);
@@ -150,6 +152,7 @@ const Item: FC<ItemProps> = ({
                   width: '100%',
                 }}
                 alt={title}
+                // eslint-disable-next-line import/no-dynamic-require, global-require
                 src={require(`../../../image/${e}`)}
               />
             </SwiperSlide>
@@ -161,6 +164,7 @@ const Item: FC<ItemProps> = ({
         <CardItemInfoPrice fontWeight='700' fontSize='24px'>
           <>{price} ₽</>
           <StyledIcon
+            isInArray={isInArray}
             onClick={() =>
               addCart({
                 price,

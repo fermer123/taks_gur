@@ -39,8 +39,9 @@ const ErrorOnLoad = styled.h1`
 `;
 
 const Items: FC = () => {
-  const {data, addCart, loading, errorShowMore, vertical} =
+  const {data, addCart, loading, errorShowMore, vertical, cart} =
     useContext(CartContext);
+
   return (
     <>
       <CardItems vertical={vertical}>
@@ -49,9 +50,18 @@ const Items: FC = () => {
               .fill(0)
               // eslint-disable-next-line react/no-array-index-key
               .map((e, idx) => <CardSkeleton key={idx} />)
-          : data?.map((e) => (
-              <Item {...e} vertical={vertical} addCart={addCart} key={e.id} />
-            ))}
+          : data?.map((e) => {
+              const isInArray = cart.some((cartItem) => cartItem.id === e.id);
+              return (
+                <Item
+                  {...e}
+                  vertical={vertical}
+                  addCart={addCart}
+                  key={e.id}
+                  isInArray={isInArray}
+                />
+              );
+            })}
       </CardItems>
       <ScrollButton />
       {errorShowMore ? (

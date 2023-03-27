@@ -26,8 +26,10 @@ export type CartContextType = {
   loadingShowMore: boolean;
   alternativeView: (view: boolean) => void;
   vertical: boolean;
+  cart: CartItem[];
 };
 
 export interface AltView {
   vertical: boolean | string;
+  isInArray?: boolean;
 }
