@@ -36,6 +36,9 @@ const CardItemHeaderSeen = styled(Chip)`
 const CardItemInfo = styled(CardContent)`
   padding: 10px 12px 19px;
   width: 100%;
+  &:last-child {
+    padding: 10px 12px 19px;
+  }
 `;
 
 const CardItemInfoPrice = styled(Typography)`
@@ -80,7 +83,7 @@ const CardItemTitle = styled(Typography)`
 const CardItemFooter = styled(CardContent)<AltView>`
   display: flex;
   justify-content: space-between;
-  margin-top: ${({vertical}) => (vertical ? '30px' : '')};
+  margin-top: ${({vertical}) => (vertical ? '23px' : '')};
   gap: 15px;
   color: #8f8f8f;
   &:last-child {
@@ -139,7 +142,7 @@ const Item: FC<ItemProps> = ({
 
   return (
     <CardItem vertical={vertical}>
-      <NavLink to={`port/${id}`}>
+      <NavLink style={{padding: '0'}} to={`port/${id}`}>
         <CardItemHeader vertical={vertical}>
           {IMAGES.map((e) => (
             <SwiperSlide key={e}>
